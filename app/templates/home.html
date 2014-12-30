@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-9">
+            <ul>
+                <li ng-repeat="ad in data.ads">
+                    <div class="row">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ad.title}} <small class="pull-right">{{ad.date | date:'d-MMM-yyyy'}}</small></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <img src="{{ad.imageDataUrl}}" alt="" class="img-responsive"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <span>{{ad.text}}</span>
+                                    <br/><br/>
+                                    <div>
+                                        <span>
+                                            <strong>Name: </strong>{{ad.ownerName}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <strong>Email: </strong>{{ad.ownerEmail}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <strong>Tel: </strong>{{ad.ownerPhone}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Categories</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li ng-repeat="category in categories">
+                        <a href="">{{category.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Towns</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li ng-repeat="town in towns">
+                        <a href="">{{town.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
