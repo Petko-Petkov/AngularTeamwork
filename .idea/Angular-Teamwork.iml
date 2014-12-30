@@ -7,5 +7,7 @@
     <orderEntry type="library" name="jQuery" level="application" />
     <orderEntry type="library" name="jQueryUI" level="application" />
     <orderEntry type="library" name="Node.js v0.10.29 Core Modules" level="application" />
+    <orderEntry type="library" name="angularjs-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="Angular-Teamwork node_modules" level="project" />
   </component>
 </module>
