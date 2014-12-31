@@ -3,7 +3,9 @@
  */
 'use strict';
 
-var addsSite = angular.module('addsSite', ['ngRoute'])
+var app = angular.module('addsSite', ['ngRoute'])
+    .value('toastr', toastr)
+    .constant('pageUrl', 'http://softuni-ads.azurewebsites.net/api/')
     .config(function ($routeProvider){
         $routeProvider.when('/register', {
             templateUrl: 'templates/register.html'

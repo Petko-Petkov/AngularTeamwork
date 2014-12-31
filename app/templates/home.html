@@ -1,40 +1,48 @@
 <div class="row">
     <div class="col-md-9">
-            <ul>
-                <li ng-repeat="ad in data.ads">
-                    <div class="row">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{ad.title}} <small class="pull-right">{{ad.date | date:'d-MMM-yyyy'}}</small></h3>
+        <ul>
+            <li ng-repeat="ad in data.ads">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ad.title}}
+                                <small class="pull-right">{{ad.date | date:'d-MMM-yyyy'}}</small>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-4 image-container">
+                                <img ng-src="{{ad.imageDataUrl}}" src="img/No-Image-Available.png" alt="image"
+                                     class="img-responsive"/>
                             </div>
-                            <div class="panel-body">
-                                <div class="col-md-4">
-                                    <img src="{{ad.imageDataUrl}}" alt="" class="img-responsive"/>
+                            <div class="col-md-8 add-container">
+                                <div>
+                                <span>{{ad.text}}</span>
                                 </div>
-                                <div class="col-md-8">
-                                    <span>{{ad.text}}</span>
-                                    <br/><br/>
+                                <br/><br/>
+
+                                <div class="add-info-container">
                                     <div>
                                         <span>
-                                            <strong>Name: </strong>{{ad.ownerName}}
+                                            <strong class="col-md-3">Name: </strong> <span class="col-md-9">{{ad.ownerName}}</span>
                                         </span>
                                     </div>
                                     <div>
                                         <span>
-                                            <strong>Email: </strong>{{ad.ownerEmail}}
+                                            <strong class="col-md-3">Email: </strong><span class="col-md-9">{{ad.ownerEmail}}</span>
                                         </span>
                                     </div>
                                     <div>
                                         <span>
-                                            <strong>Tel: </strong>{{ad.ownerPhone}}
+                                            <strong class="col-md-3">Tel: </strong><span class="col-md-9">{{ad.ownerPhone}}</span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="col-md-3">
         <div class="panel panel-info">
@@ -44,7 +52,8 @@
             <div class="panel-body">
                 <ul>
                     <li ng-repeat="category in categories">
-                        <a href="">{{category.name}}</a>
+                        // TODO implement filtering
+                        <a href="" ng-click="">{{category.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +65,8 @@
             <div class="panel-body">
                 <ul>
                     <li ng-repeat="town in towns">
-                        <a href="">{{town.name}}</a>
+                        // TODO implement filtering
+                        <a href="" ng-click="">{{town.name}}</a>
                     </li>
                 </ul>
             </div>
