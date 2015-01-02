@@ -3,13 +3,36 @@
  */
 "use strict";
 
-app.controller('AccountController', function ($scope, notifier) {
-    function AccountController($scope, accountData){
-        $scope.loginData = accountData.login(function (resp) {
-            $scope.user = resp;
-        });
-        $scope.registerData = accountData.register(function (resp) {
-            $scope.user = resp;
-        });
+app.controller('AccountController', function ($scope, $http, pageUrl, notifier) {
+    $scope.login = function login(user) {
+        $http({
+            method: 'POST',
+            url: pageUrl + 'user/login',
+            data: user
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Welcome back ');
+                    console.log(data);
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Incorrect username or password');
+                console.log(data);
+            })
+    }
+
+    $scope.register = function register(user) {
+        $http({
+            method: 'POST',
+            url: pageUrl + 'user/register',
+            data: user
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Successfully registered ');
+                console.log(data);
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Fill all the required fields with correct data.');
+                console.log(data);
+            })
     }
 });

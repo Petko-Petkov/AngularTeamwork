@@ -6,7 +6,7 @@
 
 app.controller('PageController',
     function PageController($scope, mainData) {
-        $scope.getAllAds = mainData.getAllAds(function (resp) {
+        mainData.getAllAds(function (resp) {
             $scope.data = resp;
         }, 5, 1);
         mainData.getAllTowns(function (resp) {
@@ -17,6 +17,12 @@ app.controller('PageController',
             $scope.categories = resp;
         });
 
+        $scope.myTown;
+        if(!$scope.towns) {
+            $scope.myTown = 'Select town';
+        } else {
+            $scope.myTown = $scope.towns[0];
+        }
         $scope.author = "Petko Petkov";
         $scope.year = 2014;
 

@@ -35,4 +35,9 @@ app.factory('accountData', function ($http, $log, pageUrl, user, notifier) {
                 $log.warn(data);
             })
     }
+
+    return {
+        login: login,
+        register: register
+    }
 });
