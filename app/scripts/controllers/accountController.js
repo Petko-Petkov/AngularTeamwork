@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('AccountController', function ($scope, $http, $location, pageUrl, notifier) {
+app.controller('AccountController', function ($scope, $http, $location, $window, pageUrl, notifier) {
     $scope.login = function login(user, loginForm) {
         if (loginForm.$valid) {
             $http({
@@ -10,7 +10,11 @@ app.controller('AccountController', function ($scope, $http, $location, pageUrl,
             })
                 .success(function (data, status, headers, config) {
                     /*notifier.success('Welcome back ' + data.username);*/
+                    sessionStorage.setItem('accessToken', JSON.stringify(data.access_token));
+                    sessionStorage.setItem('tokenType',JSON.stringify(data.token_type));
+                    sessionStorage.setItem('username', JSON.stringify(data.username));
                     $location.path('/home');
+                    $window.location.reload();
                     console.log(data);
                 })
                 .error(function (data, status, headers, config) {
@@ -40,5 +44,11 @@ app.controller('AccountController', function ($scope, $http, $location, pageUrl,
         } else {
             alert('YNWA')
         }
+    }
+
+    $scope.logout = function logout() {
+        sessionStorage.clear();
+        $location.path('/home');
+        $window.location.reload();
     }
 });

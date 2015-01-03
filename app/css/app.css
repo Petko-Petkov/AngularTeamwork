@@ -28,3 +28,12 @@ input .ng-invalid.ng-dirty.form-validation {
 input .ng-valid.ng-dirty.form-validation {
     background-color: #ff0000;
 }
+
+.loggedInAccountButtons {
+    padding-top: 5px;
+}
+
+.welcome-user {
+    margin-right: 20px;
+    font-size: 1.2em;
+}

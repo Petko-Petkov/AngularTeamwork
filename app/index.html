@@ -21,10 +21,14 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <ul class="nav navbar-nav pull-right">
+            <ul class="nav navbar-nav pull-right loginAccountButtons" ng-show="showLoginLinks">
                 <li><a href="#/login">Login</a></li>
                 <li><a href="#/register">Register</a></li>
             </ul>
+            <div class="nav navbar-nav pull-right loggedInAccountButtons" ng-controller="AccountController" ng-hide="showLoggedInLinks">
+                <span class="text-primary welcome-user">Welcome {{username}}</span>
+                <a href="#/home" class="btn btn-primary logout-btn" ng-click="logout()">Logout</a>
+            </div>
         </div>
     </div>
 </header>
