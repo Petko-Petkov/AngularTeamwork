@@ -1,6 +1,3 @@
-/**
- * Created by Pecata on 30.12.2014 г..
- */
 "use strict";
 
 app.factory('mainData', function ($http, $log, pageUrl) {

@@ -1,6 +1,4 @@
-/**
- * Created by Pecata on 31.12.2014 г..
- */
+/*
 "use strict";
 
 app.factory('accountData', function ($http, $log, pageUrl, user, notifier) {
@@ -40,4 +38,4 @@ app.factory('accountData', function ($http, $log, pageUrl, user, notifier) {
         login: login,
         register: register
     }
-});
+});*/

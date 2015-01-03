@@ -20,3 +20,11 @@ ul li {
     top: 220px;
     right: 600px;
 }
+
+input .ng-invalid.ng-dirty.form-validation {
+    background-color: #ff0000;
+}
+
+input .ng-valid.ng-dirty.form-validation {
+    background-color: #ff0000;
+}
