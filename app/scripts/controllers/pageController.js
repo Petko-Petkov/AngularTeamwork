@@ -12,27 +12,26 @@ app.controller('PageController',
         mainData.getAllCategories(function (resp) {
             $scope.categories = resp;
         });
-        {
-            $scope.myTown;
-            if (!$scope.towns) {
-                $scope.myTown = 'Select town';
-            } else {
-                $scope.myTown = $scope.towns[0];
-            }
 
-            if (sessionStorage.length) {
-                if (sessionStorage.accessToken.length) {
-                    $scope.showLoginLinks = false;
-                    $scope.showLoggedInLinks = false;
-                    $scope.username = JSON.parse(sessionStorage.getItem('username'));
-                }
-            } else {
-                $scope.showLoginLinks = true;
-                $scope.showLoggedInLinks = true;
-            }
-
-            $scope.author = "Petko Petkov";
-            $scope.year = 2014;
+        $scope.myTown;
+        if (!$scope.towns) {
+            $scope.myTown = 'Select town';
+        } else {
+            $scope.myTown = $scope.towns[0];
         }
+
+        if (sessionStorage.length) {
+            if (sessionStorage.accessToken.length) {
+                $scope.showLoginLinks = false;
+                $scope.showLoggedInLinks = false;
+                $scope.username = JSON.parse(sessionStorage.getItem('username'));
+            }
+        } else {
+            $scope.showLoginLinks = true;
+            $scope.showLoggedInLinks = true;
+        }
+
+        $scope.author = "Petko Petkov";
+        $scope.year = 2014;
     }
 );

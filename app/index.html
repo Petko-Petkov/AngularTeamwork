@@ -26,8 +26,51 @@
                 <li><a href="#/register">Register</a></li>
             </ul>
             <div class="nav navbar-nav pull-right loggedInAccountButtons" ng-controller="AccountController" ng-hide="showLoggedInLinks">
-                <span class="text-primary welcome-user">Welcome {{username}}</span>
-                <a href="#/home" class="btn btn-primary logout-btn" ng-click="logout()">Logout</a>
+                <ul class="dropdown">
+                    <span class="text-primary welcome-user">
+                        Welcome
+                            <a href=""
+                            class="dropdown-toggle" data-toggle="dropdown" id="user-menu">
+                                <span class="glyphicon glyphicon-user"></span> {{username}} <span class="caret"></span>
+                            </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#/home">Home</a>
+                            </li>
+                            <li class="menu-item dropdown dropdown-submenu">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">My Ads</a>
+                                <ul class="dropdown-menu">
+                                    <li class="menu-item">
+                                        <a href="#/myAds">All</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#/myAds">Published</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#/myAds">Waiting approval</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#/myAds">Inactive</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#/myAds">Rejected</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#/publishAd">Publish new Ad</a>
+                            </li>
+                            <li>
+                                <a href="#/editProfile">Edit profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#/home" ng-click="logout()">Logout</a>
+                            </li>
+                        </ul>
+                    </span>
+
+                </ul>
             </div>
         </div>
     </div>
@@ -54,8 +97,10 @@
 <script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
 <script type="text/javascript" src="scripts/app.js"></script>
 <script type="text/javascript" src="scripts/services/home.js"></script>
+<script type="text/javascript" src="scripts/services/personalAdsService.js"></script>
 <script type="text/javascript" src="scripts/controllers/pageController.js"></script>
 <script type="text/javascript" src="scripts/controllers/accountController.js"></script>
+<script type="text/javascript" src="scripts/controllers/personalAdsController.js"></script>
 <script type="text/javascript" src="scripts/services/notifier.js"></script>
 </body>
 </html>

@@ -13,5 +13,14 @@ var app = angular.module('addsSite', ['ngRoute'])
         $routeProvider.when('/home', {
             templateUrl: 'templates/home.html'
         });
+        $routeProvider.when('/myAds', {
+            templateUrl: 'templates/myAds.html'
+        });
+        $routeProvider.when('/publishAd', {
+            templateUrl: 'templates/publishAd.html'
+        });
+        $routeProvider.when('/editProfile', {
+            templateUrl: 'templates/editProfile.html'
+        });
         $routeProvider.otherwise({redirectTo: '/home'});
     });
