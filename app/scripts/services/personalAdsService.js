@@ -21,7 +21,26 @@ app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
             })
     }
 
+    function postNewAd(ad) {
+        $http({
+            method: 'POST',
+            url: pageUrl + 'users/ads',
+            headers: {
+                Authorization: JSON.parse(sessionStorage.getItem('accessToken'))
+            },
+            data: ad
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Successfully added new ad. After submitted by an administrator it will be published.');
+                $location.path('/user/ads');
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Something wrong happened');
+            })
+    };
+
     return {
-        getAllAds: getMyAds
+        getAllAds: getMyAds,
+        postNewAd: postNewAd
     }
 });
