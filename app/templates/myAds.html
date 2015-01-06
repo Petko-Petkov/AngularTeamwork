@@ -1,5 +1,5 @@
 <div class="row" ng-controller="PersonalAdsController">
-    <div class="col-md-12">
+    <div class="col-md-9">
         <ul>
             <li ng-repeat="ad in personalAdsData.ads">
                 <div class="row">
@@ -20,7 +20,7 @@
                                 </div>
                                 <br/><br/>
 
-                                <div class="add-info-container">
+                                <!--<div class="add-info-container">
                                     <div>
                                         <span>
                                             <strong class="col-md-3">Name: </strong> <span class="col-md-9">{{ad.ownerName}}</span>
@@ -36,6 +36,14 @@
                                             <strong class="col-md-3">Tel: </strong><span class="col-md-9">{{ad.ownerPhone}}</span>
                                         </span>
                                     </div>
+                                </div>-->
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <span>Status: {{ad.status}}</span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger" ng-click="deactivateAd(ad.id)">Deactivate</button>
                                 </div>
                             </div>
                         </div>
@@ -43,5 +51,19 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">My ads</h3>
+            </div>
+            <div class="panel-body">
+                <div><a ng-href="#/myAds" ng-click="getMyAds()">All</a></div>
+                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '2')">Published</a></div>
+                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '1')">Waiting approval</a></div>
+                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '0')">Inactive</a></div>
+                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '3')">Rejected</a></div>
+            </div>
+        </div>
     </div>
 </div>

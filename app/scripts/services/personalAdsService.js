@@ -1,20 +1,36 @@
 "use strict";
 
 app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
-    function getMyAds(success) {
+    function getMyAds(success, adStatus, startPage, pageSize ) {
+        var statusStr = '',
+            startPageStr = '',
+            pageSizeStr = '';
+
+        if(adStatus > 0) {
+            statusStr = 'Status=' + adStatus + '&';
+        }
+
+        if(startPage > 0) {
+            startPageStr = 'StartPage=' + startPage + '&';
+        }
+
+        if(pageSize > 0) {
+            pageSizeStr = 'PageSize=' + pageSize;
+        }
+
         $http({
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
             },
-            url: pageUrl + 'user/ads'
+            url: pageUrl + 'user/ads?' + statusStr + startPageStr + pageSizeStr
         })
             .success(function (data, status, headers, config) {
                 if (data.ads == 0) {
                     notifier.error('You have noo ads yet!')
                 }
                 console.log(data.ads);
-                success(data);
+                success(data)
             })
             .error(function (data, status, headers, config) {
                 $log.warn(data);
@@ -39,8 +55,26 @@ app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
             })
     };
 
+    function deactivateAd(id) {
+        $http({
+            method: 'PUT',
+            url: pageUrl + 'user/ads/deactivate/' + id,
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+            }
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Ad successfully removed.')
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Could not deactivate your ad')
+            })
+
+        }
+
     return {
         getAllAds: getMyAds,
-        postNewAd: postNewAd
+        postNewAd: postNewAd,
+        deactivateAd: deactivateAd
     }
 });

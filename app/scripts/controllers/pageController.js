@@ -47,14 +47,14 @@ app.controller('PageController',
                 $scope.currentPage += mod;
                 $scope.reloadAdds(false);
             }
-        }
+        };
 
         $scope.borderPages = function (page) {
             if (page > 0 && page <= $scope.numPages) {
                 $scope.currentPage = page;
                 $scope.reloadAdds(false);
             }
-        }
+        };
 
         $scope.reloadAdds = function (isFilter) {
             if (isFilter) {
@@ -69,7 +69,7 @@ app.controller('PageController',
 
                 $scope.numPages = resp.numPages;
             }, $scope.category.id ? $scope.category.id : '', $scope.town.id ? $scope.town.id : '', $scope.currentPage, $scope.maxSize);
-        }
+        };
 
         $scope.numPages = function () {
             return $scope.allAddsData.numPages;
