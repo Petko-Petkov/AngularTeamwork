@@ -44,16 +44,15 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3"><!--
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">Categories</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="categoriess">
                 <ul>
                     <li ng-repeat="category in categories">
-                        // TODO implement filtering
-                        <a href="" ng-click="">{{category.name}}</a>
+                        <a href="" data-value="{{category.id}}" ng-click="reloadAdds(true)">{{category.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -62,14 +61,36 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Towns</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="townss">
                 <ul>
                     <li ng-repeat="town in towns">
-                        // TODO implement filtering
                         <a href="" ng-click="">{{town.name}}</a>
                     </li>
                 </ul>
             </div>
+        </div>-->
+
+        <div class="col-lg-10">
+            <select class="form-control" id="categories" ng-model="category.id" ng-options="category.id as category.name for category in categories" ng-change="reloadAdds(true)">
+                <option value="">-- choose category --</option>
+            </select>
+        </div>
+        <div class="col-lg-10">
+            <select class="form-control" id="towns" ng-model="town.id" ng-options="town.id as town.name for town in towns" ng-change="reloadAdds(true)">
+                <option value="">-- choose town --</option>
+            </select>
         </div>
     </div>
+
+    <ul class="pagination">
+        <li><a href="" ng-click="borderPages(1)">|<<</a></li>
+        <li><a href="" ng-click="goToPage(-1)"><<</a></li>
+        <li><a href="" ng-click="goToPage(-2)">{{currentPage - 2 < 1 ? '':currentPage - 2 }}</a></li>
+        <li><a href="" ng-click="goToPage(-1)">{{currentPage - 1 < 1 ? '':currentPage - 1 }}</a></li>
+        <li class="active"><a href="#">{{currentPage}}</a></li>
+        <li><a href="" ng-click="goToPage(1)">{{currentPage + 1 > numPages ? '':currentPage + 1 }}</a></li>
+        <li><a href="" ng-click="goToPage(2)">{{currentPage + 2 > numPages ? '':currentPage + 2 }}</a></li>
+        <li><a href="" ng-click="goToPage(1)">>></a></li>
+        <li><a href="" ng-click="borderPages(numPages)">>>|</a></li>
+    </ul>
 </div>

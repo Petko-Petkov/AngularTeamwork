@@ -24,9 +24,9 @@ app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
     function postNewAd(ad) {
         $http({
             method: 'POST',
-            url: pageUrl + 'users/ads',
+            url: pageUrl + 'user/ads',
             headers: {
-                Authorization: JSON.parse(sessionStorage.getItem('accessToken'))
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
             },
             data: ad
         })

@@ -1,1 +1,0 @@
-var bindImageApp = angular.module('bindImage', []);

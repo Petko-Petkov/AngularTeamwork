@@ -1,7 +1,7 @@
 "use strict";
 
 app.factory('mainData', function ($http, $log, pageUrl) {
-    function getAllAdds (success, pageSize, startPage, categoryId, townId) {
+    function getAllAdds (success, categoryId, townId, startPage, pageSize) {
         var size = pageSize || 5,
             start = startPage || 1,
             town = townId || -1,
@@ -10,16 +10,16 @@ app.factory('mainData', function ($http, $log, pageUrl) {
             categoryStr = '';
 
         if(town > 0) {
-            townStr = '&townId=' + town;
+            townStr = 'townId=' + town + '&';
         }
 
         if(category > 0) {
-            categoryStr = '&categoryId=' + category;
+            categoryStr = 'categoryId=' + category + '&';
         }
 
         $http({
             method: 'GET',
-            url: pageUrl + 'ads?pageSize=' + size + '&startPage=' + start + townStr + categoryStr
+            url: pageUrl + 'ads?' + categoryStr  + townStr + 'startPage=' + start + '&pageSize=' + size
         })
             .success(function (data, status, headers, config) {
                 console.log(data.ads);
