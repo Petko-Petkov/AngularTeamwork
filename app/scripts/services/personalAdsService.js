@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('personalAds', function ($http, $log, $location, pageUrl, notifier) {
+app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
     function getMyAds(success, adStatus, startPage, pageSize ) {
         var statusStr = '',
             startPageStr = '',
@@ -64,11 +64,11 @@ app.factory('personalAds', function ($http, $log, $location, pageUrl, notifier) 
             }
         })
             .success(function (data, status, headers, config) {
-                notifier.success('Ad successfully deactivated.')
+                notifier.success('Ad successfully deactivated.');
+                $window.location.reload();
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Could not deactivate your ad');
-                $location.path('/myAds')
             })
 
         }
@@ -83,7 +83,7 @@ app.factory('personalAds', function ($http, $log, $location, pageUrl, notifier) 
         })
             .success(function (data, status, headers, config) {
                 notifier.success('Ad successfully deleted.');
-                $location.path('/myAds')
+                $window.location.reload();
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Ad could not be deleted.')
@@ -99,12 +99,11 @@ app.factory('personalAds', function ($http, $log, $location, pageUrl, notifier) 
             }
         })
             .success(function (data, status, headers, config) {
-                notifier.success('Ad published again successfully.')
-                $location.path('/myAds')
+                notifier.success('Ad published again successfully.');
+                $window.location.reload();
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Ad could not be published again');
-                $location.path('/myAds')
             })
     }
 
