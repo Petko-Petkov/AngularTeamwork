@@ -1,11 +1,11 @@
 "use strict";
 
-app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
+app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, notifier) {
     function getMyAds(success, adStatus, startPage, pageSize ) {
+
         var statusStr = '',
             startPageStr = '',
             pageSizeStr = '';
-
         if(adStatus >= 0) {
             statusStr = 'Status=' + adStatus + '&';
         }
@@ -29,7 +29,6 @@ app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
                 if (data.ads == 0) {
                     notifier.error('You have noo ads yet!')
                 }
-                console.log(data.ads);
                 success(data)
             })
             .error(function (data, status, headers, config) {
@@ -53,9 +52,10 @@ app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
             .error(function (data, status, headers, config) {
                 notifier.error('Something wrong happened');
             })
-    };
 
+    };
     function deactivateAd(id) {
+
         $http({
             method: 'PUT',
             url: pageUrl + 'user/ads/deactivate/' + id,
@@ -70,8 +70,7 @@ app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
             .error(function (data, status, headers, config) {
                 notifier.error('Could not deactivate your ad');
             })
-
-        }
+    }
 
     function deleteAd(id) {
         $http({
@@ -83,7 +82,7 @@ app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
         })
             .success(function (data, status, headers, config) {
                 notifier.success('Ad successfully deleted.');
-                $window.location.reload();
+                /*$window.location.reload();*/
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Ad could not be deleted.')
@@ -107,11 +106,42 @@ app.factory('personalAds', function ($http, $log, $window, pageUrl, notifier) {
             })
     }
 
+    function getSingleAd(success, id) {
+        $http({
+            method: 'GET',
+            url: pageUrl + 'user/ads/' + id,
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+            }
+        })
+            .success(function(data, status, headers, config) {
+                $location.path('/editAd');
+                success(data);
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Could not get ad');
+            })
+    }
+
+
+    function editAd(id, adData) {
+        $http({
+            method: 'PUT',
+            url: pageUrl + 'api/user/ads' + id,
+            data: adData,
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+            }
+        })
+    }
+
     return {
         getAllAds: getMyAds,
         postNewAd: postNewAd,
         deactivateAd: deactivateAd,
         deleteAd: deleteAd,
-        publishAgain: publishAgain
-    }
+        publishAgain: publishAgain,
+        editAd: editAd,
+        getSingleAd: getSingleAd
+};
 });

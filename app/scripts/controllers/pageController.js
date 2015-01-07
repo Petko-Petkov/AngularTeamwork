@@ -7,12 +7,15 @@ app.controller('PageController',
         $scope.numPages = 0;
         $scope.category = {};
         $scope.town = {};
+        $scope.ready = false;
 
         mainData.getAllAds(function (resp) {
             $scope.data = resp;
             if (resp.ads.length === 0) {
                 $scope.currentPage = 0;
             }
+
+            $scope.ready = true;
             $scope.numPages = resp.numPages;
         }, $scope.category.id ? $scope.category.id : '', $scope.town.id ? $scope.town.id : '', $scope.currentPage, $scope.maxSize);
 
@@ -67,6 +70,7 @@ app.controller('PageController',
                     $scope.currentPage = 0;
                 }
 
+                $scope.ready = true;
                 $scope.numPages = resp.numPages;
             }, $scope.category.id ? $scope.category.id : '', $scope.town.id ? $scope.town.id : '', $scope.currentPage, $scope.maxSize);
         };

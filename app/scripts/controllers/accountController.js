@@ -9,17 +9,16 @@ app.controller('AccountController', function ($scope, $http, $location, $window,
                 data: user
             })
                 .success(function (data, status, headers, config) {
-                    /*notifier.success('Welcome back ' + data.username);*/
+
                     sessionStorage.setItem('accessToken', JSON.stringify(data.access_token));
                     sessionStorage.setItem('tokenType',JSON.stringify(data.token_type));
                     sessionStorage.setItem('username', JSON.stringify(data.username));
                     $location.path('/home');
                     $window.location.reload();
-                    console.log(data);
+                    notifier.success('Welcome back ' + data.username);
                 })
                 .error(function (data, status, headers, config) {
                     notifier.error('Incorrect username or password');
-                    console.log(data);
                 })
         } else {
             alert('Invalid username or password');
