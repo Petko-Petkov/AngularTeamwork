@@ -34,6 +34,20 @@ app.controller('PersonalAdsController',
             }
         };
 
+        $scope.checkAdId = function (status) {
+            switch (status){
+                case 'Published':
+                case 'WaitingApproval': return true;
+                default: return false;
+            }
+        };
+
+        $scope.chechIfAdInactive = function (status) {
+            if(status == 'Inactive') {
+                return true;
+            }
+        };
+
         $scope.reloadAds = function (isFilter, adStatus) {
             if (isFilter) {
                 $scope.currentPage = 1;
@@ -52,6 +66,14 @@ app.controller('PersonalAdsController',
         
         $scope.deactivateAd = function (id) {
             personalAds.deactivateAd(id);
+        };
+
+        $scope.deleteAd = function (id) {
+            personalAds.deleteAd(id);
+        };
+
+        $scope.publishAgain = function (id) {
+            personalAds.publishAgain(id)
         };
         
         $scope.publishNewAd = function (adData) {

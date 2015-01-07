@@ -1,12 +1,12 @@
 "use strict";
 
-app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
+app.factory('personalAds', function ($http, $log, $location, pageUrl, notifier) {
     function getMyAds(success, adStatus, startPage, pageSize ) {
         var statusStr = '',
             startPageStr = '',
             pageSizeStr = '';
 
-        if(adStatus > 0) {
+        if(adStatus >= 0) {
             statusStr = 'Status=' + adStatus + '&';
         }
 
@@ -64,17 +64,55 @@ app.factory('personalAds', function ($http, $log, pageUrl, notifier) {
             }
         })
             .success(function (data, status, headers, config) {
-                notifier.success('Ad successfully removed.')
+                notifier.success('Ad successfully deactivated.')
             })
             .error(function (data, status, headers, config) {
-                notifier.error('Could not deactivate your ad')
+                notifier.error('Could not deactivate your ad');
+                $location.path('/myAds')
             })
 
         }
 
+    function deleteAd(id) {
+        $http({
+            method: 'DELETE',
+            url: pageUrl + 'user/ads/delete/' + id,
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+            }
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Ad successfully deleted.');
+                $location.path('/myAds')
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Ad could not be deleted.')
+            })
+    }
+
+    function publishAgain(id) {
+        $http({
+            method: 'PUT',
+            url: pageUrl + 'user/ads/PublishAgain/' + id,
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+            }
+        })
+            .success(function (data, status, headers, config) {
+                notifier.success('Ad published again successfully.')
+                $location.path('/myAds')
+            })
+            .error(function (data, status, headers, config) {
+                notifier.error('Ad could not be published again');
+                $location.path('/myAds')
+            })
+    }
+
     return {
         getAllAds: getMyAds,
         postNewAd: postNewAd,
-        deactivateAd: deactivateAd
+        deactivateAd: deactivateAd,
+        deleteAd: deleteAd,
+        publishAgain: publishAgain
     }
 });

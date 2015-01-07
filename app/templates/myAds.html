@@ -43,7 +43,12 @@
                                     <span>Status: {{ad.status}}</span>
                                 </div>
                                 <div>
-                                    <button class="btn btn-danger" ng-click="deactivateAd(ad.id)">Deactivate</button>
+                                    <button ng-show="checkAdId(ad.status)" class="btn btn-danger" ng-click="deactivateAd(ad.id)">Deactivate</button>
+                                </div>
+                                <div ng-show="chechIfAdInactive(ad.status)">
+                                    <button class="btn btn-success col-sm-12" ng-click="editAd(ad)">Edit</button>
+                                    <button class="btn btn-success col-sm-12" ng-click="publishAgain(ad.id)">Publish again</button>
+                                    <button class="btn btn-success col-sm-12" ng-click="deleteAd(ad.id)">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +63,7 @@
                 <h3 class="panel-title">My ads</h3>
             </div>
             <div class="panel-body">
-                <div><a ng-href="#/myAds" ng-click="getMyAds()">All</a></div>
+                <div><a ng-href="#/myAds" ng-click="reloadAds(true)">All</a></div>
                 <div><a ng-href="#/myAds" ng-click="reloadAds(true, '2')">Published</a></div>
                 <div><a ng-href="#/myAds" ng-click="reloadAds(true, '1')">Waiting approval</a></div>
                 <div><a ng-href="#/myAds" ng-click="reloadAds(true, '0')">Inactive</a></div>
