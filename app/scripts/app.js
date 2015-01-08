@@ -5,24 +5,34 @@ var app = angular.module('addsSite', ['ngRoute'])
     .constant('pageUrl', 'http://softuni-ads.azurewebsites.net/api/')
     .config(function ($routeProvider){
         $routeProvider.when('/register', {
-            templateUrl: 'templates/account/register.html'
+            templateUrl: 'templates/account/register.html',
+            controller: 'AccountController'
         });
         $routeProvider.when('/login', {
-            templateUrl: 'templates/account/login.html'
+            templateUrl: 'templates/account/login.html',
+            controller: 'AccountController'
         });
         $routeProvider.when('/home', {
-            templateUrl: 'templates/home.html'
+            templateUrl: 'templates/home.html',
+            controller: 'PageController'
         });
-        $routeProvider.when('/myAds', {
-            templateUrl: 'templates/personalAds/myAds.html'
+        $routeProvider.when('/user/ads', {
+            templateUrl: 'templates/personalAds/myAds.html',
+            controller: 'PersonalAdsController'
         });
-        $routeProvider.when('/publishAd', {
-            templateUrl: 'templates/personalAds/publishAd.html'
+        $routeProvider.when('/user/ads/publish', {
+            templateUrl: 'templates/personalAds/publishAd.html',
+            controller: 'PersonalAdsController'
         });
-        $routeProvider.when('/editAd', {
-            templateUrl: 'templates/personalAds/editAd.html'
+        $routeProvider.when('/user/ads/edit/:param', {
+            templateUrl: 'templates/personalAds/editAd.html',
+            controller: 'EditAdController'
         });
-        $routeProvider.when('/editProfile', {
+        $routeProvider.when('/user/ads/delete/:param', {
+            templateUrl: 'templates/personalAds/deleteAd.html',
+            controller: 'DeleteAdController'
+        });
+        $routeProvider.when('/user/profile', {
             templateUrl: 'templates/account/editProfile.html'
         });
         $routeProvider.otherwise({redirectTo: '/home'});

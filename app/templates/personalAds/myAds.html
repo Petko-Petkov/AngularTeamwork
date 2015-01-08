@@ -1,4 +1,4 @@
-<div class="row" ng-controller="PersonalAdsController">
+<div class="row">
     <div class="col-md-9">
         <ul>
             <li ng-repeat="ad in personalAdsData.ads">
@@ -44,11 +44,11 @@
                 <h3 class="panel-title">My ads</h3>
             </div>
             <div class="panel-body">
-                <div><a ng-href="#/myAds" ng-click="reloadAds(true)">All</a></div>
-                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '2')">Published</a></div>
-                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '1')">Waiting approval</a></div>
-                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '0')">Inactive</a></div>
-                <div><a ng-href="#/myAds" ng-click="reloadAds(true, '3')">Rejected</a></div>
+                <div><a ng-href="#/user/ads" ng-click="reloadAds(true)">All</a></div>
+                <div><a ng-href="#/user/ads" ng-click="reloadAds(true, '2')">Published</a></div>
+                <div><a ng-href="#/user/ads" ng-click="reloadAds(true, '1')">Waiting approval</a></div>
+                <div><a ng-href="#/user/ads" ng-click="reloadAds(true, '0')">Inactive</a></div>
+                <div><a ng-href="#/user/ads" ng-click="reloadAds(true, '3')">Rejected</a></div>
             </div>
         </div>
     </div>

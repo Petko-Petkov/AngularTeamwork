@@ -1,12 +1,19 @@
 'use strict';
 
 app.controller('PersonalAdsController',
-    function personalAdsController($scope, $http, $location, personalAds, notifier) {
+    function personalAdsController($scope, $http, $location, personalAds, mainData, notifier) {
         $scope.currentPage = 1;
         $scope.pageSize = 5;
         $scope.numPages = 0;
-
         $scope.adData = {};
+
+        mainData.getAllCategories(function (resp) {
+            $scope.categories = resp;
+        });
+
+        mainData.getAllTowns(function (resp) {
+            $scope.towns = resp;
+        });
 
         $scope.getMyAds = personalAds.getAllAds(function (resp) {
             $scope.personalAdsData = resp;
@@ -19,6 +26,7 @@ app.controller('PersonalAdsController',
         }, status ? status : '', $scope.currentPage, $scope.pageSize);
 
         $scope.adData = {townId: null, categoryId: null};
+
         $scope.fileSelected = function (fileInputField) {
             delete $scope.adData.imageDataUrl;
             var file = fileInputField.files[0];
@@ -76,20 +84,12 @@ app.controller('PersonalAdsController',
 
         $scope.getSingleAd = function (id) {
             personalAds.getSingleAd(function (resp) {
-                $scope.title = resp.title;
-                $scope.text = resp.text;
-                $scope.category = resp.categoryId;
-                $scope.title = resp.townId;
+                $location.path('/user/ads/edit/' + resp.id);
             }, id);
         };
 
-
-        $scope.editAd = function (id) {
-            personalAds.editAd(id)
-        };
-
         $scope.deleteAd = function (id) {
-            personalAds.deleteAd(id);
+            $location.path('user/ads/delete/' + id);
         };
 
         $scope.publishAgain = function (id) {
@@ -99,10 +99,5 @@ app.controller('PersonalAdsController',
         $scope.publishNewAd = function (adData) {
             personalAds.postNewAd(adData);
         };
-
-        $scope.title = '';
-        $scope.text = '';
-        $scope.category;
-        $scope.town;
     }
 );

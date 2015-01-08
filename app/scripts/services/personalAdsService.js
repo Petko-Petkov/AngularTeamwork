@@ -75,13 +75,14 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
     function deleteAd(id) {
         $http({
             method: 'DELETE',
-            url: pageUrl + 'user/ads/delete/' + id,
+            url: pageUrl + 'user/ads/' + id,
             headers: {
                 Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
             }
         })
             .success(function (data, status, headers, config) {
                 notifier.success('Ad successfully deleted.');
+                $location.path('user/ads');
                 /*$window.location.reload();*/
             })
             .error(function (data, status, headers, config) {
@@ -115,8 +116,8 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
             }
         })
             .success(function(data, status, headers, config) {
-                $location.path('/editAd');
                 success(data);
+
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Could not get ad');
@@ -143,5 +144,5 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
         publishAgain: publishAgain,
         editAd: editAd,
         getSingleAd: getSingleAd
-};
+    }
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('PageController',
-    function PageController($scope, mainData) {
+    function PageController($scope, mainData, accountData) {
         $scope.maxSize = 5;
         $scope.currentPage = 1;
         $scope.numPages = 0;
@@ -38,12 +38,13 @@ app.controller('PageController',
             if (sessionStorage.accessToken.length) {
                 $scope.showLoginLinks = false;
                 $scope.showLoggedInLinks = false;
-                $scope.username = JSON.parse(sessionStorage.getItem('username'));
+                $scope.username = accountData.getUserName();
             }
         } else {
             $scope.showLoginLinks = true;
             $scope.showLoggedInLinks = true;
         }
+
 
         $scope.goToPage = function (mod) {
             if ($scope.currentPage + mod > 0 && $scope.currentPage + mod <= $scope.numPages) {
@@ -78,6 +79,12 @@ app.controller('PageController',
         $scope.numPages = function () {
             return $scope.allAddsData.numPages;
         };
+
+        $scope.logout = function logout() {
+            sessionStorage.clear();
+            $location.path('/home');
+             $window.location.reload();
+        }
 
         $scope.author = "Petko Petkov";
         $scope.year = 2014;
