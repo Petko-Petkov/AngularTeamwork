@@ -38,7 +38,6 @@ app.controller('PageController',
             if (sessionStorage.accessToken.length) {
                 $scope.showLoginLinks = false;
                 $scope.showLoggedInLinks = false;
-                $scope.username = accountData.getUserName();
             }
         } else {
             $scope.showLoginLinks = true;

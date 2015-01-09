@@ -12,7 +12,4 @@ app.controller('AccountController', function ($scope, accountData) {
             $scope.registerData = resp;
         }, user, registerForm)
     };
-
-    $scope.username = accountData.getUserName();
-
 });

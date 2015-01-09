@@ -12,6 +12,10 @@ var app = angular.module('addsSite', ['ngRoute'])
             templateUrl: 'templates/account/login.html',
             controller: 'AccountController'
         });
+        $routeProvider.when('/user/profile', {
+            templateUrl: 'templates/account/editProfile.html',
+            controller: 'EditProfileController'
+        });
         $routeProvider.when('/home', {
             templateUrl: 'templates/home.html',
             controller: 'PageController'
@@ -31,9 +35,6 @@ var app = angular.module('addsSite', ['ngRoute'])
         $routeProvider.when('/user/ads/delete/:param', {
             templateUrl: 'templates/personalAds/deleteAd.html',
             controller: 'DeleteAdController'
-        });
-        $routeProvider.when('/user/profile', {
-            templateUrl: 'templates/account/editProfile.html'
         });
         $routeProvider.otherwise({redirectTo: '/home'});
     });
