@@ -22,7 +22,6 @@ app.factory('mainData', function ($http, $log, pageUrl) {
             url: pageUrl + 'ads?' + categoryStr  + townStr + 'startPage=' + start + '&pageSize=' + size
         })
             .success(function (data, status, headers, config) {
-                console.log(data.ads);
                 success(data);
             })
             .error(function (data, status, headers, config) {

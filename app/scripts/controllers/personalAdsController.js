@@ -6,14 +6,14 @@ app.controller('PersonalAdsController',
         $scope.pageSize = 5;
         $scope.numPages = 0;
         $scope.adData = {};
-
+/*
         mainData.getAllCategories(function (resp) {
             $scope.categories = resp;
         });
 
         mainData.getAllTowns(function (resp) {
             $scope.towns = resp;
-        });
+        });*/
 
         $scope.getMyAds = personalAds.getAllAds(function (resp) {
             $scope.personalAdsData = resp;

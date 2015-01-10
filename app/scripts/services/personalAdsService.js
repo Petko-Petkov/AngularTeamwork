@@ -26,8 +26,20 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
             url: pageUrl + 'user/ads?' + statusStr + startPageStr + pageSizeStr
         })
             .success(function (data, status, headers, config) {
-                if (data.ads == 0) {
-                    notifier.error('You have noo ads yet!')
+                var currStatus;
+                if (data.ads.length == 0) {
+                    switch (adStatus) {
+                        case "0": currStatus = '"Inactive"';
+                            break;
+                        case "1": currStatus = '"Waiting approval"';
+                            break;
+                        case "2": currStatus = '"Published"';
+                            break;
+                        case "3": currStatus = '"Rejected"';
+                            break;
+                        default : break;
+                    }
+                    notifier.error('You have noo ads yet with status of ' + currStatus + '!')
                 }
                 success(data)
             })
@@ -83,7 +95,6 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
             .success(function (data, status, headers, config) {
                 notifier.success('Ad successfully deleted.');
                 $location.path('user/ads');
-                /*$window.location.reload();*/
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Ad could not be deleted.')
@@ -100,7 +111,7 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
         })
             .success(function (data, status, headers, config) {
                 notifier.success('Ad published again successfully.');
-                $window.location.reload();
+                $location.path('/user/ads');
             })
             .error(function (data, status, headers, config) {
                 notifier.error('Ad could not be published again');

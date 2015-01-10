@@ -15,8 +15,12 @@ app.factory('accountData',
                         sessionStorage.setItem('tokenType',JSON.stringify(data.token_type));
                         sessionStorage.setItem('username', JSON.stringify(data.username));
                         $location.path('/home');
-                        $window.location.reload();
-                        notifier.success('Welcome back ' + data.username);
+                        notifier.success('Login in ...')
+                        setTimeout(function () {
+                            $window.location.reload();
+                            notifier.success('Welcome back ' + data.username + '!');
+                        }, 1500);
+
                         success(data);
                     })
                     .error(function (data, status, headers, config) {
@@ -103,11 +107,21 @@ app.factory('accountData',
                 })
         }
 
+        function logout (){
+            notifier.success('Goodbye ' + sessionStorage['username']);
+            sessionStorage.clear();
+            setTimeout(function () {
+                $window.location.reload();
+            }, 1500);
+
+        }
+
         return {
             login: login,
             register: register,
             changePassword: changePassword,
             updateProfile: updateProfile,
-            getAccountData: getAccountData
+            getAccountData: getAccountData,
+            logout: logout
         }
 });

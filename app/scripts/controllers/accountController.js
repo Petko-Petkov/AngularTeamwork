@@ -1,9 +1,10 @@
 "use strict";
 
-app.controller('AccountController', function ($scope, accountData) {
+app.controller('AccountController', function ($scope, accountData, notifier) {
     $scope.login = function (user, loginForm) {
         accountData.login(function (resp) {
             $scope.loginData = resp;
+            notifier.success('Welcome back ' + data.username + '!');
         }, user, loginForm)
     };
 

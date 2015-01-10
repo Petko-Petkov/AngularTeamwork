@@ -36,5 +36,9 @@ var app = angular.module('addsSite', ['ngRoute'])
             templateUrl: 'templates/personalAds/deleteAd.html',
             controller: 'DeleteAdController'
         });
+        $routeProvider.when('/logout', {
+            templateUrl: 'templates/account/logout.html',
+            controller: 'LogoutController'
+        })
         $routeProvider.otherwise({redirectTo: '/home'});
     });
