@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="col-md-3 image-box">
-                    <img ng-src="data.imageDataUrl" alt="adImage"/>
+                    <img ng-src="data.imageDataUrl" id="imagePreview" alt="adImage"/>
                 </div>
                 <div class="col-md-9">
                     <div class="form-group">
@@ -21,8 +21,9 @@
                             <label class="col-md-2" for="categoriesOptions">Categories</label>
 
                             <div class="col-md-9">
-                                <select class="form-control" name="categoriesOptions" id="categoriesOptions">
-                                    <option value="data.categoryId"></option>
+                                <select class="form-control" name="categoriesOptions" id="categoriesOptions" ng-model="data.categoryId"
+                                        ng-options="category.id as category.name for category in categories" ng-value="data.categoryId">
+                                    <option value="">--Select category--</option>
                                 </select>
                             </div>
                         </div>
@@ -30,8 +31,8 @@
                             <label class="col-md-2" for="townsOptions">Town</label>
 
                             <div class="col-md-9">
-                                <select class="form-control" name="townsOptions" id="townsOptions">
-                                    <option value="data.townId"></option>
+                                <select class="form-control" name="townsOptions" id="townsOptions" ng-model="data.townId" ng-options="town.id as town.name for town in towns" ng-value="data.townId">
+                                    <option value="">--Select town--</option>
                                 </select>
                             </div>
                         </div>

@@ -43,7 +43,7 @@ app.factory('accountData',
                         success(data);
                     })
                     .error(function (data, status, headers, config) {
-                        notifier.error('Fill all the required fields with correct data.');
+                        notifier.error(data.message);
                         console.log(data);
                     })
             } else {

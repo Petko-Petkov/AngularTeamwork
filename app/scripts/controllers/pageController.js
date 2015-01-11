@@ -26,25 +26,6 @@ app.controller('PageController',
         mainData.getAllCategories(function (resp) {
             $scope.categories = resp;
         });
-/*
-        $scope.myTown;
-        if (!$scope.towns) {
-            $scope.myTown = 'Select town';
-        } else {
-            $scope.myTown = $scope.towns[0];
-        }*/
-
-        /*if (sessionStorage.length) {
-            if (sessionStorage.accessToken.length) {
-                $scope.showLoginLinks = false;
-                $scope.showLoggedInLinks = false;
-                $scope.username = sessionStorage['username'];
-            }
-        } else {
-            $scope.showLoginLinks = true;
-            $scope.showLoggedInLinks = true;
-        }*/
-
 
         $scope.goToPage = function (mod) {
             if ($scope.currentPage + mod > 0 && $scope.currentPage + mod <= $scope.numPages) {
@@ -76,19 +57,8 @@ app.controller('PageController',
             }, $scope.category.id ? $scope.category.id : '', $scope.town.id ? $scope.town.id : '', $scope.currentPage, $scope.maxSize);
         };
 
-        $scope.username = sessionStorage.username ? sessionStorage.username : "";
-        $scope.showLoginLinks = sessionStorage.accessToken ? false : true;
-/*
-
         $scope.numPages = function () {
             return $scope.allAddsData.numPages;
         };
-*//*
-
-        $scope.logout = function logout() {
-            sessionStorage.clear();
-            $location.path('/home');
-             $window.location.reload();
-        };*/
     }
 );

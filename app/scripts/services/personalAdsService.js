@@ -29,17 +29,18 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
                 var currStatus;
                 if (data.ads.length == 0) {
                     switch (adStatus) {
-                        case "0": currStatus = '"Inactive"';
+                        case "0": notifier.error('You have noo ads yet with status "Inactive"!')
                             break;
-                        case "1": currStatus = '"Waiting approval"';
+                        case "1": notifier.error('You have noo ads yet with status "Waiting approval"!');
                             break;
-                        case "2": currStatus = '"Published"';
+                        case "2": notifier.error('You have noo ads yet with status "Published"!');
                             break;
-                        case "3": currStatus = '"Rejected"';
+                        case "3": notifier.error('You have noo ads yet with status "Rejected"!');
                             break;
-                        default : break;
+                        default : notifier.error('You have noo ads yet!')
+                            break;
                     }
-                    notifier.error('You have noo ads yet with status of ' + currStatus + '!')
+
                 }
                 success(data)
             })
