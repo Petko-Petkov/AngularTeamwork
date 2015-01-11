@@ -1,4 +1,4 @@
-app.factory('editAdData', function () {
+/*app.factory('editAdData', function () {
     var text = "";
     var ctrl = {};
 
@@ -11,4 +11,4 @@ app.factory('editAdData', function () {
     };
 
     return ctrl;
-});
+});*/
