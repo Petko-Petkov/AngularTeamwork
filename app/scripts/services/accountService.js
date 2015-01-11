@@ -15,9 +15,10 @@ app.factory('accountData',
                         sessionStorage.setItem('tokenType',JSON.stringify(data.token_type));
                         sessionStorage.setItem('username', JSON.stringify(data.username));
                         $location.path('/home');
+                        notifier.success('Welcome back ' + data.username + '! Redirecting ...');
+
                         setTimeout(function () {
                             $window.location.reload();
-                            notifier.success('Welcome back ' + data.username + '!');
                             success(data);
                         }, 1500);
 
