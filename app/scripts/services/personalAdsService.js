@@ -140,12 +140,19 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
     function editAd(id, adData) {
         $http({
             method: 'PUT',
-            url: pageUrl + 'api/user/ads' + id,
+            url: pageUrl + 'user/ads/' + id,
             data: adData,
             headers: {
                 Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
             }
         })
+            .success(function (data, status, headers, config) {
+                $location.path('user/ads');
+                notifier.success('Ad successfully updated!');
+            })
+            .error(function (data, sattus, headers, config) {
+                notifier.error(data.message);
+            })
     }
 
     return {

@@ -11,7 +11,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="col-md-3 image-container">
-                                <img ng-src="{{ad.imageDataUrl}}" src="../../../img/No-Image-Available.png" alt="image"
+                                <img ng-src="{{ad.imageDataUrl}}" src="img/No-Image-Available.png" alt="image"
                                      class="img-responsive"/>
                             </div>
                             <div class="col-md-7 add-container">
@@ -36,6 +36,17 @@
                     </div>
                 </div>
             </li>
+        </ul>
+        <ul class="pagination">
+            <li><a href="" ng-click="borderPages(1)">|<<</a></li>
+            <li><a href="" ng-click="goToPage(-1)"><<</a></li>
+            <li><a href="" ng-click="goToPage(-2)">{{currentPage - 2 < 1 ? '':currentPage - 2 }}</a></li>
+            <li><a href="" ng-click="goToPage(-1)">{{currentPage - 1 < 1 ? '':currentPage - 1 }}</a></li>
+            <li class="active"><a href="#">{{currentPage}}</a></li>
+            <li><a href="" ng-click="goToPage(1)">{{currentPage + 1 > numPages ? '':currentPage + 1 }}</a></li>
+            <li><a href="" ng-click="goToPage(2)">{{currentPage + 2 > numPages ? '':currentPage + 2 }}</a></li>
+            <li><a href="" ng-click="goToPage(1)">>></a></li>
+            <li><a href="" ng-click="borderPages(numPages)">>>|</a></li>
         </ul>
     </div>
     <div class="col-md-3">

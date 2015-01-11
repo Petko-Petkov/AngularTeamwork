@@ -15,19 +15,19 @@ app.factory('accountData',
                         sessionStorage.setItem('tokenType',JSON.stringify(data.token_type));
                         sessionStorage.setItem('username', JSON.stringify(data.username));
                         $location.path('/home');
-                        notifier.success('Login in ...')
                         setTimeout(function () {
                             $window.location.reload();
                             notifier.success('Welcome back ' + data.username + '!');
+                            success(data);
                         }, 1500);
 
-                        success(data);
+
                     })
                     .error(function (data, status, headers, config) {
                         notifier.error('Incorrect username or password');
                     })
             } else {
-                alert('Invalid username or password');
+                notifier.error('Invalid username or password');
             }
         }
 
@@ -44,7 +44,6 @@ app.factory('accountData',
                     })
                     .error(function (data, status, headers, config) {
                         notifier.error(data.message);
-                        console.log(data);
                     })
             } else {
                 notifier.error('Please fill all required fields with valida data.')

@@ -22,7 +22,7 @@ app.controller('EditAdController',
         });
 
         $scope.edit = function (id, adData) {
-            personalAds.editAd(id);
+            personalAds.editAd(id, adData);
         };
 
         $scope.changePic = function (files) {
@@ -50,9 +50,9 @@ app.controller('EditAdController',
         };
 
         $scope.setChangePic = function () {
-            $scope.data.ChangeImage = !$scope.data.ChangeImage;
+            $scope.data.changeImage = !$scope.data.changeImage;
 
-            if ($scope.data.ChangeImage) {
+            if ($scope.data.changeImage) {
                 notifier.success("Advertisement image state set to ON.");
             } else {
                 notifier.success("Advertisement image state set to OFF.");

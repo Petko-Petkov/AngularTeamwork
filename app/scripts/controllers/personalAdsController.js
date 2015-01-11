@@ -6,14 +6,14 @@ app.controller('PersonalAdsController',
         $scope.pageSize = 5;
         $scope.numPages = 0;
         $scope.adData = {};
-/*
+
         mainData.getAllCategories(function (resp) {
             $scope.categories = resp;
         });
 
         mainData.getAllTowns(function (resp) {
             $scope.towns = resp;
-        });*/
+        });
 
         $scope.getMyAds = personalAds.getAllAds(function (resp) {
             $scope.personalAdsData = resp;
@@ -98,6 +98,36 @@ app.controller('PersonalAdsController',
 
         $scope.publishNewAd = function (adData) {
             personalAds.postNewAd(adData);
+        };
+
+        $scope.goToPage = function (mod) {
+            if ($scope.currentPage + mod > 0 && $scope.currentPage + mod <= $scope.numPages) {
+                $scope.currentPage += mod;
+                $scope.reloadAdds(false);
+            }
+        };
+
+        $scope.borderPages = function (page) {
+            if (page > 0 && page <= $scope.numPages) {
+                $scope.currentPage = page;
+                $scope.reloadAdds(false);
+            }
+        };
+
+        $scope.reloadAdds = function (isFilter) {
+            if (isFilter) {
+                $scope.currentPage = 1;
+            }
+
+            $scope.getMyAds = personalAds.getAllAds(function (resp) {
+                $scope.personalAdsData = resp;
+
+                if (resp.ads.length === 0) {
+                    $scope.currentPage = 0;
+                }
+
+                $scope.numPages = resp.numPages;
+            }, status ? status : '', $scope.currentPage, $scope.pageSize);
         };
     }
 );
