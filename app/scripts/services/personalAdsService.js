@@ -165,3 +165,4 @@ app.factory('personalAds', function ($http, $log, $location, $window, pageUrl, n
         getSingleAd: getSingleAd
     }
 });
+
